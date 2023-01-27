@@ -1,16 +1,10 @@
 const getDollar = async (url) => {
-  var myHeaders = new Headers();
-  myHeaders.append(
-    'Authorization',
-    'Bearer ' + import.meta.env.VITE_TOKEN_BCRA
-  );
-
-  var requestOptions = {
+  const response = await fetch(url, {
     method: 'GET',
-    headers: myHeaders,
-  };
-
-  const response = await fetch(url, requestOptions);
+    headers: {
+      Authorization: 'Bearer ' + import.meta.env.VITE_TOKEN_BCRA,
+    },
+  });
   const dollar_values = await response.json();
   return dollar_values;
 };
